@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 8000;
-const connection = require('./conf');
+const connection = require('../conf');
 
 
 app.use(express.json());
@@ -22,12 +22,11 @@ app.post('/boxes', (req, res) => {
 
   const formData = req.body;
   connection.query('INSERT INTO box SET ?', formData, (err, results) => {
-
     if (err) {
       console.log(err);
-      res.status(500).send("Erreur lors de la sauvegarde d'une box");
+      res.status(400).send("Erreur lors de la sauvegarde d'une box");
     } else {
-      res.sendStatus(200).send(res);
+      res.sendStatus(201).send(res);
     }
   });
 });
