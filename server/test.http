@@ -1,2 +1,5 @@
 ### first test server
 GET http://localhost:8000
+
+### first delete 
+DELETE http://localhost:8000/coffrets/2

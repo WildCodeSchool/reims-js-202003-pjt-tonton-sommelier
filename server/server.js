@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 8000;
+const connection = require('../conf');
 
 app.listen(port, (err) => {
   if (err) {
@@ -16,3 +17,14 @@ app.get('/',(req, res) =>{
 app.post('/',(req, res) =>{
   res.status(200).send('hello world et tonton');
 })
+
+app.delete('/coffrets/:id', (req, res) => {
+  const idBoxes = req.params.id;
+  connection.query('DELETE FROM box WHERE id = ?', [idBoxes], err => {
+    if (err) {
+      res.status(202).send(`Erreur lors de la suppression d'un coffret`);
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
