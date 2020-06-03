@@ -12,3 +12,7 @@ app.listen(port, (err) => {
 app.get('/',(req, res) =>{
   res.status(200).send('hello world et tonton');
 })
+
+app.post('/',(req, res) =>{
+  res.status(200).send('hello world et tonton');
+})
