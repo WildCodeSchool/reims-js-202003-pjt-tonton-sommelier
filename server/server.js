@@ -27,7 +27,7 @@ app.post('/boxes', (req, res) => {
     connection.query('INSERT INTO box SET ?', formData, (err, results) => {
       if (err) {
         console.log(err);
-        res.status(400).send("Erreur lors de la sauvegarde d'une box");
+        res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
       } else {
         res.sendStatus(201).send(res);
       }
