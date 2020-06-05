@@ -15,7 +15,7 @@ app.get('/',(req, res) =>{
   res.status(200).send('hello tonton sommelier');
 });
 
-app.get('/coffrets',(req, res) =>{
+app.get('/boxes',(req, res) =>{
   connection.query('SELECT * from box', (err, results) => {
     if (err) {
       res.status(500).send('Erreur lors de la récupération des coffrets');
@@ -25,14 +25,14 @@ app.get('/coffrets',(req, res) =>{
   });
 });
 
-app.get('/coffrets/:id', (req, res) => {
+app.get('/boxes/:id', (req, res) => {
   const idBoxes = req.params.id;
   connection.query('SELECT * from box WHERE id = ?', [idBoxes], (err, results) => {
     if (err) {
-      res.status(400).send(`Erreur lors de la récupération d'un coffret`);
+      res.status(500).send(`Erreur lors de la récupération d'un coffret`);
     } 
     if (results.length === 0) {
-      return res.status(500).send('Coffret non trouvé');
+      return res.status(404).send('Coffret non trouvé');
     } else {
       res.json(results[0]);
     }
