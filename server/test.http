@@ -1,6 +1,12 @@
 ### first test server
 GET http://localhost:8000
 
+### recuperation des donné json
+GET http://localhost:8000/coffrets
+
+### recuperation des donné json d'un id
+GET http://localhost:8000/coffrets/1
+
 ### POST box
 POST http://localhost:8000/boxes
 Content-Type: application/json
