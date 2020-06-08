@@ -49,7 +49,7 @@ app.post('/boxes', (req, res) => {
         console.log(err);
         res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
       } else {
-        res.sendStatus(201).send(res);
+        res.status(201).send({...formData, id:results.insertId });
       }
     });
   }
