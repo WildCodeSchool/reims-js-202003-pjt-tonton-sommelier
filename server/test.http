@@ -3,3 +3,18 @@ GET http://localhost:8000
 
 ### first delete 
 DELETE http://localhost:8000/coffrets/2
+### recuperation des donné json
+GET http://localhost:8000/boxes
+
+### recuperation des donné json d'un id
+GET http://localhost:8000/boxes/8
+
+### POST box
+POST http://localhost:8000/boxes
+Content-Type: application/json
+
+{
+    "name": "Champagne12"
+}
+
+ 
