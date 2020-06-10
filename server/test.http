@@ -25,6 +25,9 @@ Content-Type: application/json
     "name":"jai été put en 5"
 }
 
+###  DELETE box by id
+DELETE http://localhost:8000/boxes/1
+
 #------------------------partie bouteilles ------------------------#
 
 
@@ -48,3 +51,6 @@ Content-Type: application/json
     "name": "jechangelabouteille1",
     "category_id": "2"
 }
+
+### first delete 
+DELETE http://localhost:8000/bottles/2

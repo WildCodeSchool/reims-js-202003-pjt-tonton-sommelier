@@ -73,6 +73,17 @@ app.put('/boxes/:id', (req, res) => {
     });
 });
 
+app.delete('/boxes/:id', (req, res) => {
+  const idBoxes = req.params.id;
+  connection.query('DELETE FROM box WHERE id = ?', idBoxes, err => {
+    if (err) {
+      res.status(500).send(`Erreur lors de la suppression d'un coffret`);
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
 /* ------------------------partie bouteilles ------------------------*/
 
 
@@ -106,16 +117,26 @@ app.put('/bottles/:id', (req, res) => {
   const idBottles = req.params.id;
   const formData = req.body;
   if (formData.name == null || formData.name === '') {
-    res.status(400).send("Le données sont mal renseigné");
+    res.status(400).send("Les données sont mal renseigné");
   } else {
     connection.query('UPDATE bottle SET ? WHERE id=?' , [formData, idBottles], (err, results) => {
       if (err) {
         console.log(err);
         res.status(500).send("Erreur lors de la sauvegarde d'une bouteille");
       } else {
-        res.status(201).send({...formData});
+        res.status(200).send({...formData});
       }
     });
   }
 });
 
+app.delete('/bottles/:id', (req, res) => {
+  const idBottles = req.params.id;
+  connection.query('DELETE FROM bottle WHERE id = ?', idBottles, err => {
+    if (err) {
+      res.status(500).send(`Erreur lors de la suppression d'une bouteille`);
+    } else {
+      res.status(200).send("éléments suprimé avec succès");
+    }
+  });
+});
