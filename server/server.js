@@ -26,15 +26,11 @@ app.get('/boxes',(req, res) =>{
   });
 });
 
-app.post('/',(req, res) =>{
-  res.status(200).send('hello world et tonton');
-})
-
 app.delete('/coffrets/:id', (req, res) => {
   const idBoxes = req.params.id;
   connection.query('DELETE FROM box WHERE id = ?', [idBoxes], err => {
     if (err) {
-      res.status(202).send(`Erreur lors de la suppression d'un coffret`);
+      res.status(500).send(`Erreur lors de la suppression d'un coffret`);
     } else {
       res.sendStatus(200);
     }

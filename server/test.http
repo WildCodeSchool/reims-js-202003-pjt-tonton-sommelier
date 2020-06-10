@@ -2,12 +2,12 @@
 GET http://localhost:8000
 
 ### first delete 
-DELETE http://localhost:8000/coffrets/2
+DELETE http://localhost:8000/coffrets/
 ### recuperation des donné json
 GET http://localhost:8000/boxes
 
 ### recuperation des donné json d'un id
-GET http://localhost:8000/boxes/8
+GET http://localhost:8000/boxes/
 
 ### POST box
 POST http://localhost:8000/boxes
