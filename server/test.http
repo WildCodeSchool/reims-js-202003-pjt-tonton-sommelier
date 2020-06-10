@@ -54,3 +54,28 @@ Content-Type: application/json
 
 ### first delete 
 DELETE http://localhost:8000/bottles/2
+
+#------------------------partie catégorie ------------------------#
+
+
+### recuperation des donné catégorie
+GET http://localhost:8000/categories
+
+### POST catégorie
+POST http://localhost:8000/categories
+Content-Type: application/json
+
+{
+    "name": "78787iluiooooooo:u878"
+}
+
+### PUT catégorie by id
+PUT http://localhost:8000/categories/5
+Content-Type: application/json
+
+{
+    "name": "categorieID1changée)=)==)=)==)=)==)"
+}
+
+### delete catégorie by id
+DELETE http://localhost:8000/categories/1
