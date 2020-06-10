@@ -80,7 +80,7 @@ app.delete('/boxes/:id', (req, res) => {
     if (err) {
       res.status(500).send(`Erreur lors de la suppression d'un coffret`);
     } else {
-      res.status(204).send("éléments suprimé avec succès");
+      res.status(204);
     }
   });
 });
@@ -137,7 +137,7 @@ app.delete('/bottles/:id', (req, res) => {
     if (err) {
       res.status(500).send(`Erreur lors de la suppression d'une bouteille`);
     } else {
-      res.status(204).send("éléments suprimé avec succès");
+      res.status(204);
     }
   });
 });
@@ -192,7 +192,7 @@ app.delete('/categories/:id', (req, res) => {
     if (err) {
       res.status(500).send(`Erreur lors de la suppression d'une catégorie`);
     } else {
-      res.status(204).send("éléments suprimé avec succès");
+      res.status(204);
     }
   });
 });
