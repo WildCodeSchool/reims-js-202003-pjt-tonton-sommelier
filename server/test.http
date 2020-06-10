@@ -2,15 +2,17 @@
 GET http://localhost:8000
 
 ### recuperation des donné json
-GET http://localhost:8000/coffrets
+GET http://localhost:8000/boxes
 
 ### recuperation des donné json d'un id
-GET http://localhost:8000/coffrets/1
+GET http://localhost:8000/boxes/8
 
 ### POST box
 POST http://localhost:8000/boxes
 Content-Type: application/json
 
 {
-    "name": "Champagne"
+    "name": "Champagne12"
 }
+
+ 
