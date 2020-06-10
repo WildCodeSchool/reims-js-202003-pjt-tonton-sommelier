@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 8000;
-const cors = require('cors');
+
 const connection = require('./conf');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -11,7 +11,7 @@ app.listen(port, (err) => {
   }
   console.log(`Server is listening on ${port}`);
 });
-app.use(cors()); 
+ 
 
 app.get('/',(req, res) =>{
   res.status(200).send('hello tonton sommelier');
@@ -87,13 +87,18 @@ app.post('/descriptions', (req, res) => {
 app.put('/descriptions/:id', (req, res) => {
   const idDescription = req.params.id;
   const formData = req.body;
-  connection.query('UPDATE description SET ? WHERE id = ?', [formData, idDescription], err => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Erreur lors de la modification de la description");
-    } else {
-      res.status(200).send({...formData})} 
+  if (formData.content == null || formData.content === '') {
+    res.status(400).send("La description est mal renseignée");
+  } else {
+    connection.query('UPDATE description SET ? WHERE id = ?', [formData, idDescription], err => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Erreur lors de la modification de la description");
+      } else {
+        res.status(200).send({...formData})
+      } 
     });
+  }
 });
 
 app.delete('/descriptions/:id', (req, res) => {
@@ -102,7 +107,7 @@ app.delete('/descriptions/:id', (req, res) => {
     if (err) {
       res.status(500).send(`Erreur lors de la suppression de la description`);
     } else {
-      res.status(200).send(`Élément supprimé avec succès`);
+      res.status(204).send(`Élément supprimé avec succès`);
     }
   });
 });
