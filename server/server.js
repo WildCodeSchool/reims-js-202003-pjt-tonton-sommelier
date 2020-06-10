@@ -16,6 +16,7 @@ app.get('/',(req, res) =>{
   res.status(200).send('hello tonton sommelier');
 });
 
+/* ------------------------partie box ------------------------*/
 app.get('/boxes',(req, res) =>{
   connection.query('SELECT * from box', (err, results) => {
     if (err) {
@@ -56,26 +57,24 @@ app.post('/boxes', (req, res) => {
   }
 });
 
-app.put('/coffrets/:id', (req, res) => {
+app.put('/boxes/:id', (req, res) => {
 
-  // récupération des données envoyées
   const idBoxes = req.params.id;
   const formData = req.body;
 
-  // connection à la base de données, et insertion dans le coffret
   connection.query('UPDATE box SET ? WHERE id = ?', [formData, idBoxes], err => {
 
     if (err) {
-      // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
       console.log(err);
       res.status(500).send("Erreur lors de la modification d'un coffret");
     } else {
 
-      // Si tout s'est bien passé, on envoie un statut "ok".
-      res.sendStatus(200);
-  res.status(200).send('hello tonton sommelier')} 
+    res.status(200).send({...formData})} 
     });
 });
+
+/* ------------------------partie bouteilles ------------------------*/
+
 
 app.get('/bottles',(req, res) =>{
   connection.query('SELECT * from bottle', (err, results) => {
@@ -97,25 +96,26 @@ app.post('/bottles', (req, res) => {
         console.log(err);
         res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
       } else {
-        res.status(201).send({...formData, id:results.insertId });
+        res.status(201).send({...formData});
       }
     });
   }
 });
 
 app.put('/bottles/:id', (req, res) => {
-  const idBoxes = req.params.id;
+  const idBottles = req.params.id;
   const formData = req.body;
   if (formData.name == null || formData.name === '') {
     res.status(400).send("Le données sont mal renseigné");
   } else {
-    connection.query('UPDATE bottle SET ? WHERE id=?' , formData, idBoxes, (err, results) => {
+    connection.query('UPDATE bottle SET ? WHERE id=?' , [formData, idBottles], (err, results) => {
       if (err) {
         console.log(err);
-        res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
+        res.status(500).send("Erreur lors de la sauvegarde d'une bouteille");
       } else {
-        res.status(201).send({...formData, id:results.insertId });
+        res.status(201).send({...formData});
       }
     });
   }
 });
+

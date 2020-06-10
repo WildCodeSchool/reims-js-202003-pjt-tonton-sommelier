@@ -1,3 +1,5 @@
+#------------------------partie box ------------------------#
+
 ### first test server
 GET http://localhost:8000
 
@@ -12,8 +14,19 @@ POST http://localhost:8000/boxes
 Content-Type: application/json
 
 {
-    "name": "Champagnliule12"
+    "name": "nouvelle box"
 }
+
+### put box by id
+PUT http://localhost:8000/boxes/5
+Content-Type: application/json
+
+{
+    "name":"jai été put en 5"
+}
+
+#------------------------partie bouteilles ------------------------#
+
 
 ### recuperation des donné bouteilles
 GET http://localhost:8000/bottles
@@ -32,6 +45,6 @@ PUT http://localhost:8000/bottles/1
 Content-Type: application/json
 
 {
-    "name": "chateauneufdupap",
-    "category_id": "1"
+    "name": "jechangelabouteille1",
+    "category_id": "2"
 }
