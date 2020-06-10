@@ -4,6 +4,7 @@ const port = 8000;
 const connection = require('../conf');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.listen(port, (err) => {
   if (err) {
     throw new Error('Something bad happened...');
@@ -45,6 +46,49 @@ app.post('/boxes', (req, res) => {
     res.status(400).send("Le nom du coffret est mal renseigné");
   } else {
     connection.query('INSERT INTO box SET ?', formData, (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
+      } else {
+        res.status(201).send({...formData, id:results.insertId });
+      }
+    });
+  }
+});
+
+app.get('/bottles',(req, res) =>{
+  connection.query('SELECT * from bottle', (err, results) => {
+    if (err) {
+      res.status(500).send('Erreur lors de la récupération des coffrets');
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+app.post('/bottles', (req, res) => {
+  const formData = req.body;
+  if (formData.name == null || formData.name === '') {
+    res.status(400).send("Le nom de la bouteille est mal renseigné");
+  } else {
+    connection.query('INSERT INTO bottle SET ?', formData, (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
+      } else {
+        res.status(201).send({...formData, id:results.insertId });
+      }
+    });
+  }
+});
+
+app.put('/bottles/:id', (req, res) => {
+  const idBoxes = req.params.id;
+  const formData = req.body;
+  if (formData.name == null || formData.name === '') {
+    res.status(400).send("Le données sont mal renseigné");
+  } else {
+    connection.query('UPDATE bottle SET ? WHERE id=?' , formData, idBoxes, (err, results) => {
       if (err) {
         console.log(err);
         res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
