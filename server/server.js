@@ -58,19 +58,20 @@ app.post('/boxes', (req, res) => {
 });
 
 app.put('/boxes/:id', (req, res) => {
-
   const idBoxes = req.params.id;
   const formData = req.body;
-
-  connection.query('UPDATE box SET ? WHERE id = ?', [formData, idBoxes], err => {
-
-    if (err) {
-      console.log(err);
-      res.status(500).send("Erreur lors de la modification d'un coffret");
-    } else {
-
-    res.status(200).send({...formData})} 
+  if (formData.name == null || formData.name === '') {
+    res.status(400).send("Les données sont mal renseigné");
+  } else {
+    connection.query('UPDATE box SET ? WHERE id=?' , [formData, idBoxes], (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
+      } else {
+        res.status(200).send({...formData});
+      }
     });
+  }
 });
 
 app.delete('/boxes/:id', (req, res) => {
@@ -79,7 +80,7 @@ app.delete('/boxes/:id', (req, res) => {
     if (err) {
       res.status(500).send(`Erreur lors de la suppression d'un coffret`);
     } else {
-      res.sendStatus(200);
+      res.status(204).send("éléments suprimé avec succès");
     }
   });
 });
@@ -136,7 +137,7 @@ app.delete('/bottles/:id', (req, res) => {
     if (err) {
       res.status(500).send(`Erreur lors de la suppression d'une bouteille`);
     } else {
-      res.status(200).send("éléments suprimé avec succès");
+      res.status(204).send("éléments suprimé avec succès");
     }
   });
 });
@@ -191,7 +192,7 @@ app.delete('/categories/:id', (req, res) => {
     if (err) {
       res.status(500).send(`Erreur lors de la suppression d'une catégorie`);
     } else {
-      res.status(200).send("éléments suprimé avec succès");
+      res.status(204).send("éléments suprimé avec succès");
     }
   });
 });

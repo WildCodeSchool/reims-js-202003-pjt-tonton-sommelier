@@ -14,11 +14,11 @@ POST http://localhost:8000/boxes
 Content-Type: application/json
 
 {
-    "name": "nouvelle box"
+    "name": "bgbgbgb"
 }
 
 ### put box by id
-PUT http://localhost:8000/boxes/5
+PUT http://localhost:8000/boxes/3
 Content-Type: application/json
 
 {
@@ -26,7 +26,7 @@ Content-Type: application/json
 }
 
 ###  DELETE box by id
-DELETE http://localhost:8000/boxes/1
+DELETE http://localhost:8000/boxes/4
 
 #------------------------partie bouteilles ------------------------#
 
@@ -53,7 +53,7 @@ Content-Type: application/json
 }
 
 ### first delete 
-DELETE http://localhost:8000/bottles/2
+DELETE http://localhost:8000/bottles/7
 
 #------------------------partie catégorie ------------------------#
 
