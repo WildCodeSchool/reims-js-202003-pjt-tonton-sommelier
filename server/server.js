@@ -107,7 +107,7 @@ app.delete('/descriptions/:id', (req, res) => {
     if (err) {
       res.status(500).send(`Erreur lors de la suppression de la description`);
     } else {
-      res.status(204).send(`Élément supprimé avec succès`);
+      res.status(204);
     }
   });
 });
