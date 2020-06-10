@@ -24,4 +24,3 @@ CREATE TABLE category(
     PRIMARY KEY (id)
 );
 
-ALTER TABLE bottle CHANGE category category_id VARCHAR (100) NOT NULL;

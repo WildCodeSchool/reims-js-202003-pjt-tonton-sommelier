@@ -1,0 +1,13 @@
+CREATE TABLE bottle(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR (100) NOT NULL,
+	category_id VARCHAR (100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE category(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR (100) NOT NULL,
+    PRIMARY KEY (id)
+);
