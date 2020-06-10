@@ -56,6 +56,27 @@ app.post('/boxes', (req, res) => {
   }
 });
 
+app.put('/coffrets/:id', (req, res) => {
+
+  // récupération des données envoyées
+  const idBoxes = req.params.id;
+  const formData = req.body;
+
+  // connection à la base de données, et insertion dans le coffret
+  connection.query('UPDATE box SET ? WHERE id = ?', [formData, idBoxes], err => {
+
+    if (err) {
+      // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+      console.log(err);
+      res.status(500).send("Erreur lors de la modification d'un coffret");
+    } else {
+
+      // Si tout s'est bien passé, on envoie un statut "ok".
+      res.sendStatus(200);
+  res.status(200).send('hello tonton sommelier')} 
+    });
+});
+
 app.get('/bottles',(req, res) =>{
   connection.query('SELECT * from bottle', (err, results) => {
     if (err) {
