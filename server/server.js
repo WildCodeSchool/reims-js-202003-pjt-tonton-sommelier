@@ -43,7 +43,7 @@ app.get('/boxes/:id', (req, res) => {
 
 app.post('/boxes', (req, res) => {
   const formData = req.body;
-  if (formData.name == null || formData.name === '') {
+  if (formData.name == null || formData.name === '') {
     res.status(400).send("Le nom du coffret est mal renseigné");
   } else {
     connection.query('INSERT INTO box SET ?', formData, (err, results) => {
@@ -60,7 +60,7 @@ app.post('/boxes', (req, res) => {
 app.put('/boxes/:id', (req, res) => {
   const idBoxes = req.params.id;
   const formData = req.body;
-  if (formData.name == null || formData.name === '') {
+  if (formData.name == null || formData.name === '') {
     res.status(400).send("Les données sont mal renseigné");
   } else {
     connection.query('UPDATE box SET ? WHERE id=?' , [formData, idBoxes], (err, results) => {
@@ -100,7 +100,7 @@ app.get('/bottles',(req, res) =>{
 
 app.post('/bottles', (req, res) => {
   const formData = req.body;
-  if (formData.name == null || formData.name === '') {
+  if (formData.name == null || formData.name === '') {
     res.status(400).send("Le nom de la bouteille est mal renseigné");
   } else {
     connection.query('INSERT INTO bottle SET ?', formData, (err, results) => {
@@ -117,7 +117,7 @@ app.post('/bottles', (req, res) => {
 app.put('/bottles/:id', (req, res) => {
   const idCategory = req.params.id;
   const formData = req.body;
-  if (formData.name == null || formData.name === '') {
+  if (formData.name == null || formData.name === '') {
     res.status(400).send("Les données sont mal renseigné");
   } else {
     connection.query('UPDATE bottle SET ? WHERE id=?' , [formData, idCategory], (err, results) => {
@@ -155,7 +155,7 @@ app.get('/categories',(req, res) =>{
 
 app.post('/categories', (req, res) => {
   const formData = req.body;
-  if (formData.name == null || formData.name === '') {
+  if (formData.name == null || formData.name === '') {
     res.status(400).send("Le nom de la bouteille est mal renseigné");
   } else {
     connection.query('INSERT INTO category SET ?', formData, (err, results) => {
@@ -172,7 +172,7 @@ app.post('/categories', (req, res) => {
 app.put('/categories/:id', (req, res) => {
   const idCategory = req.params.id;
   const formData = req.body;
-  if (formData.name == null || formData.name === '') {
+  if (formData.name == null || formData.name === '') {
     res.status(400).send("Les données sont mal renseigné");
   } else {
     connection.query('UPDATE bottle SET ? WHERE id=?' , [formData, idCategory], (err, results) => {
@@ -191,6 +191,61 @@ app.delete('/categories/:id', (req, res) => {
   connection.query('DELETE FROM category WHERE id = ?', idCategory, err => {
     if (err) {
       res.status(500).send(`Erreur lors de la suppression d'une catégorie`);
+    } else {
+      res.status(204);
+    }
+  });
+});
+
+/* ------------------------partie descriptions ------------------------*/
+app.get('/descriptions',(req, res) =>{
+  connection.query('SELECT * from description', (err, results) => {
+    if (err) {
+      res.status(500).send('Erreur lors de la récupération des descriptions');
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+app.post('/descriptions', (req, res) => {
+  const formData = req.body;
+  if (formData.content == null || formData.content === '') {
+    res.status(400).send("La description est mal renseignée");
+  } else {
+    connection.query('INSERT INTO description SET ?', formData, (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Erreur lors de la sauvegarde de la description");
+      } else {
+        res.status(201).send({...formData, id:results.insertId });
+      }
+    });
+  }
+});
+
+app.put('/descriptions/:id', (req, res) => {
+  const idDescription = req.params.id;
+  const formData = req.body;
+  if (formData.content == null || formData.content === '') {
+    res.status(400).send("La description est mal renseignée");
+  } else {
+    connection.query('UPDATE description SET ? WHERE id = ?', [formData, idDescription], err => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Erreur lors de la modification de la description");
+      } else {
+        res.status(200).send({...formData})
+      } 
+    });
+  }
+});
+
+app.delete('/descriptions/:id', (req, res) => {
+  const idDescription = req.params.id;
+  connection.query('DELETE FROM description WHERE id = ?', [idDescription], err => {
+    if (err) {
+      res.status(500).send(`Erreur lors de la suppression de la description`);
     } else {
       res.status(204);
     }

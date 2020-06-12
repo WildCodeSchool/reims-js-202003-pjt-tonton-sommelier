@@ -57,7 +57,6 @@ DELETE http://localhost:8000/bottles/7
 
 #------------------------partie catégorie ------------------------#
 
-
 ### recuperation des donné catégorie
 GET http://localhost:8000/categories
 
@@ -79,3 +78,33 @@ Content-Type: application/json
 
 ### delete catégorie by id
 DELETE http://localhost:8000/categories/1
+
+#------------------------partie description ------------------------#
+
+### GET description
+
+GET http://localhost:8000/descriptions
+
+### POST description
+
+POST http://localhost:8000/descriptions
+Content-Type: application/json
+
+{
+    "content": "jhgfrghnjk,l;jhgf du coffret rouge",
+    "type": "Video"
+}
+ 
+### PUT description by id
+
+PUT http://localhost:8000/descriptions/2
+Content-Type: application/json
+
+{
+    "content": "AAAAAAAAAAAAAAAAAAAAAAAAA",
+    "type": "AAAA"
+}
+
+### DELETE description by id
+
+DELETE http://localhost:8000/descriptions/2
