@@ -15,7 +15,7 @@ app.listen(process.env.PORT, (err) => {
 });
  
 app.get('/',(req, res) =>{
-  res.status(200).send('hello tonton sommelier');
+  res.status(200).json('hello tonton sommelier');
 });
 
 /* ------------------------partie box ------------------------*/
@@ -253,3 +253,5 @@ app.delete('/descriptions/:id', (req, res) => {
     }
   });
 });
+
+module.exports= app
