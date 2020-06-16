@@ -3,16 +3,17 @@ const app = require('./server.js');
 const connection = require('./db.js');
 
 
-describe('', () => {
-  it('', (done) => {
+describe('route test', () => {
+  it('acces to hello tonton_sommelier', (done) => {
     request(app)
       .get('/')
       .expect(200)
       .expect('Content-Type', /json/)
       .then(response => {
-        const expected = { message: 'Hello World!'};
+        const expected = ('hello tonton sommelier');
         expect(response.body).toEqual(expected);
         done();
       });
   });
 });
+
