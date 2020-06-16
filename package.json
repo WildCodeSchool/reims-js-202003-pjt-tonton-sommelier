@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "start:watch": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server/server.js",
+    "test": "DB_NAME=tonton_sommelier_test jest",
+    "test:watch": "DB_NAME=tonton_sommelier_test jest --watchAll"
   },
   "eslintConfig": {
     "extends": "airbnb-base"
@@ -29,6 +29,8 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "husky": "^4.2.5",
-    "nodemon": "^2.0.4"
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
   }
 }
