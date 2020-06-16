@@ -6,7 +6,6 @@ USE tonton_sommelier;
 
 /* Création des tables  */
 
-
 CREATE TABLE `box`(
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR (100) NOT NULL,
@@ -45,7 +44,6 @@ CREATE TABLE `bottle_box` (
 	`box_id` INT(11),
     `bottle_id` INT(11)
 );
-
 
 /*------ insertions--------*/
 
