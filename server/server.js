@@ -175,10 +175,10 @@ app.put('/categories/:id', (req, res) => {
   if (formData.name == null || formData.name === '') {
     res.status(400).send("Les données sont mal renseigné");
   } else {
-    connection.query('UPDATE bottle SET ? WHERE id=?' , [formData, idCategory], (err, results) => {
+    connection.query('UPDATE category SET ? WHERE id=?' , [formData, idCategory], (err, results) => {
       if (err) {
         console.log(err);
-        res.status(500).send("Erreur lors de la sauvegarde d'une bouteille");
+        res.status(500).send("Erreur lors de la sauvegarde d'une catégorie");
       } else {
         res.status(200).send({...formData});
       }
