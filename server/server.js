@@ -213,7 +213,7 @@ app.get('/descriptions',(req, res) =>{
 app.post('/descriptions', (req, res) => {
   const formData = req.body;
   if (formData.content == null || formData.content === '') {
-    res.status(400).send("La description est mal renseignée");
+    res.status(422).json("La description est mal renseignée");
   } else {
     connection.query('INSERT INTO description SET ?', formData, (err, results) => {
       if (err) {
