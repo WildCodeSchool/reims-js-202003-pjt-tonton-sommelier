@@ -5,7 +5,7 @@ const connection = require('./db.js');
 /*---- test hello tonton sommelier -------*/
 
 describe('route test', () => {
-  it('accès à hello tonton_sommelier', (done) => {
+  it('get / cas de succès', (done) => {
     request(app)
       .get('/')
       .expect(200)
@@ -18,10 +18,11 @@ describe('route test', () => {
   });
 });
 
+
 /*----------------test boxes---------------------- */
 
 describe('route test boxes', () => {
-  it('accès à la liste des coffrets réussi', (done) => {
+  it('get /boxes cas de succès', (done) => {
     request(app)
       .get('/boxes')
       .expect(200)
@@ -35,7 +36,7 @@ describe('route test boxes', () => {
 });
 
 describe('route test boxes', () => {
-  it('accès à la liste des coffrets par ID réussi', (done) => {
+  it('get /boxes/:id cas de succès', (done) => {
     request(app)
       .get('/boxes/1')
       .expect(200)
@@ -46,22 +47,25 @@ describe('route test boxes', () => {
         done();
       });
   });
-  it('accès à la liste des coffrets par ID échoué', (done) => {
+  it('get /boxes/:id cas de cas d\'erreur', (done) => {
     request(app)
-      .get('/boxes/1')
-      .expect(200)
+      .get('/boxes/4')
+      .expect(404)
       .expect('Content-Type', /json/)
       .then(response => {
-        const expected = { id : expect.any(Number), name: expect.any(String), category_id: expect.any(Number)};
+        const expected = ('Coffret non trouvé');
         expect(response.body).toEqual(expected);
         done();
       });
   });
 });
+
+
+
 /*----------------test description---------------------- */
 
 describe('route test description', () => {
-  it('accès aux description réussi', (done) => {
+  it('get /descriptions cas de succès', (done) => {
     request(app)
       .get('/descriptions')
       .expect(200)
@@ -75,8 +79,38 @@ describe('route test description', () => {
   });
 });
 
+
 describe('route test description', () => {
-  it("modification d'une description réussie", (done) => {
+  it('POST /descriptions cas d\'erreur', (done) => {
+    request(app)
+      .post('/descriptions')
+      .send({ content: null})
+      .expect(422)
+      .expect('Content-Type', /json/)
+      .then(response => {
+        const expected = ('La description est mal renseignée');
+        expect(response.body).toEqual(expected);
+        done();
+      });
+    });
+    it('POST /description cas de succès', (done) => {
+      request(app)
+        .post('/descriptions')
+        .send({ content: 'lorem ipsum', type: 'image'})
+        .expect(201)
+        .expect('Content-Type', /json/)
+        .then(response => {
+          const expected = { id: expect.any(Number), content: expect.any(String), type: expect.any(String) };
+          expect(response.body).toEqual(expected);
+          done();
+        });
+    });
+    afterEach(done => connection.query("DELETE FROM description WHERE content ='lorem ipsum'", done)); // à améliorer ?
+});
+
+
+describe('route test description', () => {
+  it("PUT /descriptions cas de succès", (done) => {
     const id = 2
     request(app)
       .put(`/descriptions/${id}`)
@@ -89,7 +123,7 @@ describe('route test description', () => {
         done();
       })
   });
-  it("modification d'une description échouée", (done) => {
+  it("PUT /descriptions cas d\'erreur", (done) => {
     const id = 2
     request(app)
       .put(`/descriptions/${id}`)
@@ -103,3 +137,7 @@ describe('route test description', () => {
       })
   });
 });
+
+  
+
+
