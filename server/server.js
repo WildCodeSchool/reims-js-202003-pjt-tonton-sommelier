@@ -203,7 +203,7 @@ app.delete('/categories/:id', (req, res) => {
 app.get('/descriptions',(req, res) =>{
   connection.query('SELECT * from description', (err, results) => {
     if (err) {
-      res.status(500).send('Erreur lors de la récupération des descriptions');
+      res.status(500).json('Erreur lors de la récupération des descriptions');
     } else {
       res.status(200).json(results);
     }
@@ -230,7 +230,7 @@ app.put('/descriptions/:id', (req, res) => {
   const idDescription = req.params.id;
   const formData = req.body;
   if (formData.content == null || formData.content === '') {
-    res.status(400).send("La description est mal renseignée");
+    res.status(422).json("La description est mal renseignée");
   } else {
     connection.query('UPDATE description SET ? WHERE id = ?', [formData, idDescription], err => {
       if (err) {

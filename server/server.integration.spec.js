@@ -34,3 +34,32 @@ describe('route test', () => {
       });
   });
 });
+
+describe('route test', () => {
+  it('update description succes', (done) => {
+    const id = 2
+    request(app)
+      .put(`/descriptions/${id}`)
+      .send({content: 'fughriughrdiugudfhgufdhg' , type: 'text' })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(response => {
+        const expected = ({ content: expect.any(String) , type: expect.any(String)})
+        expect(response.body).toEqual(expected);
+        done();
+      })
+  });
+  it('update description fail', (done) => {
+    const id = 2
+    request(app)
+      .put(`/descriptions/${id}`)
+      .send({content: '' })
+      .expect(422)
+      .expect('Content-Type', /json/)
+      .then(response => {
+        const expected = ("La description est mal renseignée")
+        expect(response.body).toEqual(expected);
+        done();
+      })
+  });
+});
