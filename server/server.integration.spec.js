@@ -44,3 +44,36 @@ describe('Test cas d\'erreur', () => {
   });
   afterEach(done => connection.query("DELETE FROM description WHERE content ='lorem ipsum'", done)); // à améliorer ?
 });
+
+
+
+
+/* ----- Boxes ----- */
+
+describe('POST /boxes', () => {
+  it('POST /boxes cas d\'erreur', (done) => {
+    request(app)
+      .post('/boxes')
+      .send({ name: null, category_id: null })
+      .expect(422)
+      .expect('Content-Type', /json/)
+      .then(response => {
+        const expected = ('Le nom du coffret est mal renseigné');
+        expect(response.body).toEqual(expected);
+        done();
+      });
+  });
+  it('POST /boxes cas de succès', (done) => {
+    request(app)
+      .post('/boxes')
+      .send({ name: 'Curieux', category_id: 1})
+      .expect(201)
+      .expect('Content-Type', /json/)
+      .then(response => {
+        const expected = { id: expect.any(Number), name: expect.any(String), category_id: expect.any(Number) };
+        expect(response.body).toEqual(expected);
+        done();
+      });
+  });
+  afterEach(done => connection.query("DELETE FROM box WHERE name ='Curieux'", done)); // à améliorer ?
+});

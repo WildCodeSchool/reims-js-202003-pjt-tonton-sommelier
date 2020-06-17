@@ -46,14 +46,14 @@ app.get('/boxes/:id', (req, res) => {
 app.post('/boxes', (req, res) => {
   const formData = req.body;
   if (formData.name == null || formData.name === '') {
-    res.status(400).send("Le nom du coffret est mal renseigné");
+    res.status(422).json("Le nom du coffret est mal renseigné");
   } else {
     connection.query('INSERT INTO box SET ?', formData, (err, results) => {
       if (err) {
         console.log(err);
         res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
       } else {
-        res.status(201).send({...formData, id:results.insertId });
+        res.status(201).send({ id:results.insertId, ...formData });
       }
     });
   }
