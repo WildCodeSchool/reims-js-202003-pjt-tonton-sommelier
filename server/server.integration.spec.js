@@ -20,8 +20,8 @@ describe('route test', () => {
 
 /*----------------test description---------------------- */
 
-describe('route test', () => {
-  it('Show description succed', (done) => {
+describe('get / descriptions', () => {
+  it('get / descriptions cas de succès', (done) => {
     request(app)
       .get('/descriptions')
       .expect(200)
@@ -33,10 +33,38 @@ describe('route test', () => {
         done();
       });
   });
+ 
+              
+describe('post / descriptions', () => {
+  it('POST /descriptions cas d\'erreur', (done) => {
+    request(app)
+      .post('/descriptions')
+      .send({ content: null})
+      .expect(422)
+      .expect('Content-Type', /json/)
+      .then(response => {
+        const expected = ('La description est mal renseignée');
+        expect(response.body).toEqual(expected);
+        done();
+      });
+  });
+  it('POST /description cas de succès', (done) => {
+    request(app)
+      .post('/descriptions')
+      .send({ content: 'lorem ipsum', type: 'image'})
+      .expect(201)
+      .expect('Content-Type', /json/)
+      .then(response => {
+        const expected = { id: expect.any(Number), content: expect.any(String), type: expect.any(String) };
+        expect(response.body).toEqual(expected);
+        done();
+      });
+  });
+  afterEach(done => connection.query("DELETE FROM description WHERE content ='lorem ipsum'", done)); // à améliorer ?
 });
 
-describe('route test', () => {
-  it('update description succes', (done) => {
+describe('put / descriptions', () => {
+  it('POST /description cas de succès', (done) => {
     const id = 2
     request(app)
       .put(`/descriptions/${id}`)
@@ -49,7 +77,7 @@ describe('route test', () => {
         done();
       })
   });
-  it('update description fail', (done) => {
+  it('POST /descriptions cas d\'erreur', (done) => {
     const id = 2
     request(app)
       .put(`/descriptions/${id}`)
@@ -63,3 +91,4 @@ describe('route test', () => {
       })
   });
 });
+

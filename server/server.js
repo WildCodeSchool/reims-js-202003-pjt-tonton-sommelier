@@ -1,11 +1,15 @@
 require('dotenv').config();
-
 const express = require('express');
 const app = express();
 const connection = require('./db.js');
 
+
+const bottles = require('../routes/bottles')
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/bottles', bottles)
 
 app.listen(process.env.PORT, (err) => {
   if (err) {
@@ -87,63 +91,6 @@ app.delete('/boxes/:id', (req, res) => {
   });
 });
 
-/* ------------------------partie bouteilles ------------------------*/
-
-
-app.get('/bottles',(req, res) =>{
-  connection.query('SELECT * from bottle', (err, results) => {
-    if (err) {
-      res.status(500).send('Erreur lors de la récupération des coffrets');
-    } else {
-      res.status(200).json(results);
-    }
-  });
-});
-
-app.post('/bottles', (req, res) => {
-  const formData = req.body;
-  if (formData.name == null || formData.name === '') {
-    res.status(400).send("Le nom de la bouteille est mal renseigné");
-  } else {
-    connection.query('INSERT INTO bottle SET ?', formData, (err, results) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
-      } else {
-        res.status(201).send({...formData});
-      }
-    });
-  }
-});
-
-app.put('/bottles/:id', (req, res) => {
-  const idCategory = req.params.id;
-  const formData = req.body;
-  if (formData.name == null || formData.name === '') {
-    res.status(400).send("Les données sont mal renseigné");
-  } else {
-    connection.query('UPDATE bottle SET ? WHERE id=?' , [formData, idCategory], (err, results) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Erreur lors de la sauvegarde d'une catégorie");
-      } else {
-        res.status(200).send({...formData});
-      }
-    });
-  }
-});
-
-app.delete('/bottles/:id', (req, res) => {
-  const idBottles = req.params.id;
-  connection.query('DELETE FROM bottle WHERE id = ?', idBottles, err => {
-    if (err) {
-      res.status(500).send(`Erreur lors de la suppression d'une bouteille`);
-    } else {
-      res.status(204);
-    }
-  });
-});
-
 /* ------------------------partie catégories ------------------------*/
 app.get('/categories',(req, res) =>{
   connection.query('SELECT * from category', (err, results) => {
@@ -213,7 +160,7 @@ app.get('/descriptions',(req, res) =>{
 app.post('/descriptions', (req, res) => {
   const formData = req.body;
   if (formData.content == null || formData.content === '') {
-    res.status(400).send("La description est mal renseignée");
+    res.status(422).json("La description est mal renseignée");
   } else {
     connection.query('INSERT INTO description SET ?', formData, (err, results) => {
       if (err) {
