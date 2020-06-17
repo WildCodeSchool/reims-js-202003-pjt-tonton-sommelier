@@ -200,6 +200,7 @@ app.delete('/categories/:id', (req, res) => {
 });
 
 /* ------------------------partie descriptions ------------------------*/
+
 app.get('/descriptions',(req, res) =>{
   connection.query('SELECT * from description', (err, results) => {
     if (err) {
