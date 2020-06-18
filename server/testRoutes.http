@@ -3,30 +3,33 @@
 ### first test server
 GET http://localhost:8000
 
-### recuperation des donné json
+### recuperation des coffrets
 GET http://localhost:8000/boxes
 
-### recuperation des donné json d'un id
+### recuperation d'un coffret en fonction d'un id
 GET http://localhost:8000/boxes/1
 
-### POST box
+### engegistrement d'un cofret
 POST http://localhost:8000/boxes
 Content-Type: application/json
 
 {
-    "name": "bgbgbgb"
+    "name": "tartiflex",
+    "category_id": 1
 }
 
-### put box by id
-PUT http://localhost:8000/boxes/3
+### modification d'un cofret en fonction d'un id
+PUT http://localhost:8000/boxes/2
 Content-Type: application/json
 
 {
-    "name":"jai été put en 5"
+    "name":"tartiflux",
+    "category_id": 1
+
 }
 
-###  DELETE box by id
-DELETE http://localhost:8000/boxes/4
+### supression d'un cofret en fonction d'un id
+DELETE http://localhost:8000/boxes/2
 
 #------------------------partie bouteilles ------------------------#
 
