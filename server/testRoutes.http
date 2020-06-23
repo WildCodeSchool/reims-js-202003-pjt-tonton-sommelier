@@ -82,29 +82,29 @@ Content-Type: application/json
 ### delete catégorie by id
 DELETE http://localhost:8000/categories/1
 
-#------------------------partie description ------------------------#
+#------------------------partie content ------------------------#
 
-### GET description
+### GET content
 
-GET http://localhost:8000/descriptions
+GET http://localhost:8000/contents
 
 
-### GET description by id
-GET http://localhost:8000/descriptions/3
+### GET content by id
+GET http://localhost:8000/contents/3
 
-### POST description
+### POST content
 
-POST http://localhost:8000/descriptions
+POST http://localhost:8000/contents
 Content-Type: application/json
 
 {
     "content": "jhgfrghnjk,l;jhgf du coffret rouge",
-    "type": "Video"
+    "type": "hjfhjryjrj"
 }
  
-### PUT description by id
+### PUT content by id
 
-PUT http://localhost:8000/descriptions/2
+PUT http://localhost:8000/contents/2
 Content-Type: application/json
 
 {
@@ -112,6 +112,5 @@ Content-Type: application/json
     "type": "AAAA"
 }
 
-### DELETE description by id
-
-DELETE http://localhost:8000/descriptions/2
+### DELETE content by id
+DELETE http://localhost:8000/contents/5
