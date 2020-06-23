@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
         res.status(500).send(`Erreur lors de la récupération d'un coffret`);
       } 
       if (results.length === 0) {
-        return res.status(404).send('Coffret non trouvé');
+        return res.status(404).json('Coffret non trouvé');
       } else {
         res.json(results[0]);
       }
@@ -36,14 +36,14 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     const formData = req.body;
     if (formData.name == null || formData.name === '') {
-      res.status(400).send("Le nom du coffret est mal renseigné");
+      res.status(422).json("Le nom du coffret est mal renseigné");
     } else {
       connection.query('INSERT INTO box SET ?', formData, (err, results) => {
         if (err) {
           console.log(err);
-          res.status(500).send("Erreur lors de la sauvegarde d'un coffret");
+          res.status(500).json("Erreur lors de la sauvegarde d'un coffret");
         } else {
-          res.status(201).send({...formData, id:results.insertId });
+          res.status(201).json({...formData, id:results.insertId });
         }
       });
     }
