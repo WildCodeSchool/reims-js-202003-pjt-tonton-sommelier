@@ -49,7 +49,7 @@ describe('route test boxes', () => {
   });
   it('get /boxes/:id cas de cas d\'erreur', (done) => {
     request(app)
-      .get('/boxes/4')
+      .get('/boxes/12')
       .expect(404)
       .expect('Content-Type', /json/)
       .then(response => {
@@ -136,7 +136,7 @@ describe('route test content', () => {
         done();
       })
   });
-  afterEach(done => connection.query("DELETE FROM description WHERE content ='lorem ipsum'", done)); // à améliorer ?
+  afterEach(done => connection.query("DELETE FROM content WHERE content ='lorem ipsum'", done)); // à améliorer ?
 });
 
 
@@ -171,7 +171,3 @@ describe('POST /boxes', () => {
   });
   afterEach(done => connection.query("DELETE FROM box WHERE name ='Curieux'", done)); // à améliorer ?
 });
-
-  
-
-
