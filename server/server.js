@@ -25,7 +25,6 @@ app.get('/',(req, res) =>{
   res.status(200).json('hello tonton sommelier');
 });
 
-/* ------------------------partie box ------------------------*/
 
 app.use('/boxes', boxes);
 app.use('/bottles', bottles);
