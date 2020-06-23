@@ -3,30 +3,33 @@
 ### first test server
 GET http://localhost:8000
 
-### recuperation des donné json
+### recuperation des coffrets
 GET http://localhost:8000/boxes
 
-### recuperation des donné json d'un id
+### recuperation d'un coffret en fonction d'un id
 GET http://localhost:8000/boxes/1
 
-### POST box
+### engegistrement d'un cofret
 POST http://localhost:8000/boxes
 Content-Type: application/json
 
 {
-    "name": "bgbgbgb"
+    "name": "tartiflex",
+    "category_id": 1
 }
 
-### put box by id
-PUT http://localhost:8000/boxes/3
+### modification d'un cofret en fonction d'un id
+PUT http://localhost:8000/boxes/2
 Content-Type: application/json
 
 {
-    "name":"jai été put en 5"
+    "name":"tartiflux",
+    "category_id": 1
+
 }
 
-###  DELETE box by id
-DELETE http://localhost:8000/boxes/4
+### supression d'un cofret en fonction d'un id
+DELETE http://localhost:8000/boxes/2
 
 #------------------------partie bouteilles ------------------------#
 
@@ -79,25 +82,29 @@ Content-Type: application/json
 ### delete catégorie by id
 DELETE http://localhost:8000/categories/1
 
-#------------------------partie description ------------------------#
+#------------------------partie content ------------------------#
 
-### GET description
+### GET content
 
-GET http://localhost:8000/descriptions
+GET http://localhost:8000/contents
 
-### POST description
 
-POST http://localhost:8000/descriptions
+### GET content by id
+GET http://localhost:8000/contents/3
+
+### POST content
+
+POST http://localhost:8000/contents
 Content-Type: application/json
 
 {
     "content": "jhgfrghnjk,l;jhgf du coffret rouge",
-    "type": "Video"
+    "type": "hjfhjryjrj"
 }
  
-### PUT description by id
+### PUT content by id
 
-PUT http://localhost:8000/descriptions/2
+PUT http://localhost:8000/contents/2
 Content-Type: application/json
 
 {
@@ -105,6 +112,5 @@ Content-Type: application/json
     "type": "AAAA"
 }
 
-### DELETE description by id
-
-DELETE http://localhost:8000/descriptions/2
+### DELETE content by id
+DELETE http://localhost:8000/contents/5
