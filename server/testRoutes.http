@@ -88,6 +88,10 @@ DELETE http://localhost:8000/categories/1
 
 GET http://localhost:8000/descriptions
 
+
+### GET description by id
+GET http://localhost:8000/descriptions/3
+
 ### POST description
 
 POST http://localhost:8000/descriptions

@@ -97,6 +97,17 @@ app.get('/descriptions',(req, res) =>{
   });
 });
 
+app.get('/descriptions/:id',(req, res) =>{
+  const idDescription = req.params.id
+  connection.query('SELECT * FROM description WHERE id = ?', idDescription, (err, results) => {
+    if (err) {
+      res.status(500).json('Erreur lors de la récupération des descriptions');
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
 app.post('/descriptions', (req, res) => {
   const formData = req.body;
   if (formData.content == null || formData.content === '') {
