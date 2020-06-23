@@ -13,7 +13,7 @@ CREATE TABLE `box`(
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `description` (
+CREATE TABLE `content` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `content` VARCHAR(500),
 	`type` VARCHAR(50),
@@ -34,9 +34,9 @@ CREATE TABLE `bottle`(
 
 /* Création des tables de jointure  */
 
-CREATE TABLE `category_description` (
+CREATE TABLE `category_content` (
 	`category_id` INT(11),
-	`description_id` INT(11)
+	`content_id` INT(11)
 );
 
 CREATE TABLE `bottle_box` (
@@ -52,9 +52,9 @@ INSERT INTO category (`id`, `name`) VALUES (1, 'rouge'), (2, 'blanc') ;
 
 INSERT INTO box (`id`, `name`, `category_id`) VALUES (1,'Mystère', 1);
 
-INSERT INTO description (`id`, `content`, `type`) VALUES (1, 'lorem ipsum inglorious minous santanas', 'texte'),(2, 'lor222em ip222sum in222glorious mino222us sa222ntanas', 'image'),(3, 'lor333em ips3333um inglo33333rious m3333inous sant33333anas', 'video');
+INSERT INTO content (`id`, `content`, `type`) VALUES (1, 'lorem ipsum inglorious minous santanas', 'texte'),(2, 'lor222em ip222sum in222glorious mino222us sa222ntanas', 'image'),(3, 'lor333em ips3333um inglo33333rious m3333inous sant33333anas', 'video');
 
-INSERT INTO category_description (`category_id`, `description_id`) VALUES (1,1),(1,2),(1,3);
+INSERT INTO category_content (`category_id`, `content_id`) VALUES (1,1),(1,2),(1,3);
 
 INSERT INTO bottle_box (`box_id`, `bottle_id`) VALUES (1,1),(1,2),(1,3);
 
@@ -66,15 +66,15 @@ ADD CONSTRAINT `fk_box_category`
 FOREIGN KEY (`category_id`)
 REFERENCES `category`(`id`);
 
-ALTER TABLE category_description
-ADD CONSTRAINT `fk_category_description_category`
+ALTER TABLE category_content
+ADD CONSTRAINT `fk_category_content_category`
 FOREIGN KEY (`category_id`)
 REFERENCES `category`(`id`);
 
-ALTER TABLE category_description
-ADD CONSTRAINT `fk_category_description_description`
-FOREIGN KEY (`description_id`)
-REFERENCES `description`(`id`);
+ALTER TABLE category_content
+ADD CONSTRAINT `fk_category_content_content`
+FOREIGN KEY (`content_id`)
+REFERENCES `content`(`id`);
 
 ALTER TABLE bottle_box
 ADD CONSTRAINT `fk_bottle_box_bottle`

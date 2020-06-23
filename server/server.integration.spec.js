@@ -62,12 +62,12 @@ describe('route test boxes', () => {
 
 
 
-/*----------------test description---------------------- */
+/*----------------test content---------------------- */
 
-describe('route test description', () => {
-  it('get /descriptions cas de succès', (done) => {
+describe('route test content', () => {
+  it('get /contents cas de succès', (done) => {
     request(app)
-      .get('/descriptions')
+      .get('/contents')
       .expect(200)
       .expect('Content-Type', /json/)
       .then(response => {
@@ -80,22 +80,22 @@ describe('route test description', () => {
 });
 
 
-describe('route test description', () => {
-  it('POST /descriptions cas d\'erreur', (done) => {
+describe('route test content', () => {
+  it('POST /contents cas d\'erreur', (done) => {
     request(app)
-      .post('/descriptions')
+      .post('/contents')
       .send({ content: null})
       .expect(422)
       .expect('Content-Type', /json/)
       .then(response => {
-        const expected = ('La description est mal renseignée');
+        const expected = ('La content est mal renseignée');
         expect(response.body).toEqual(expected);
         done();
       });
     });
-    it('POST /description cas de succès', (done) => {
+    it('POST /content cas de succès', (done) => {
       request(app)
-        .post('/descriptions')
+        .post('/contents')
         .send({ content: 'lorem ipsum', type: 'image'})
         .expect(201)
         .expect('Content-Type', /json/)
@@ -105,15 +105,15 @@ describe('route test description', () => {
           done();
         });
     });
-    afterEach(done => connection.query("DELETE FROM description WHERE content ='lorem ipsum'", done)); // à améliorer ?
+    afterEach(done => connection.query("DELETE FROM content WHERE content ='lorem ipsum'", done)); // à améliorer ?
 });
 
 
-describe('route test description', () => {
-  it("PUT /descriptions cas de succès", (done) => {
+describe('route test content', () => {
+  it("PUT /contents cas de succès", (done) => {
     const id = 2
     request(app)
-      .put(`/descriptions/${id}`)
+      .put(`/contents/${id}`)
       .send({content: 'fughriughrdiugudfhgufdhg' , type: 'text' })
       .expect(200)
       .expect('Content-Type', /json/)
@@ -123,15 +123,15 @@ describe('route test description', () => {
         done();
       })
   });
-  it("PUT /descriptions cas d\'erreur", (done) => {
+  it("PUT /contents cas d\'erreur", (done) => {
     const id = 2
     request(app)
-      .put(`/descriptions/${id}`)
+      .put(`/contents/${id}`)
       .send({content: '' })
       .expect(422)
       .expect('Content-Type', /json/)
       .then(response => {
-        const expected = ("La description est mal renseignée")
+        const expected = ("La content est mal renseignée")
         expect(response.body).toEqual(expected);
         done();
       })
