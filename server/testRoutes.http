@@ -120,8 +120,8 @@ POST http://localhost:8000/users/register
 Content-Type: application/json
 
 {
-    "username": "TestUsername2",
-    "password": "TestPassword2"
+    "username": "TestUsername7",
+    "password": "TestPassword7"
 }
 
 ###POST test route users/login
