@@ -170,5 +170,24 @@ app.post('/users/register', (req, res) => {
   }
 });
 
+app.post('/users/login', (req, res) => {
+  const {username, password} = req.body;
+  console.log(req.body);
+  if ((username == null || username === '') || (password == null || password === '')) {
+    res.status(422).json("E-Mail ou Mot de passe incorrect");
+  } else {
+    connection.query(`SELECT * FROM user WHERE username = '${username}' AND password = '${password}' `, (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Erreur lors de l'authentification");
+      } else if (results.body === undefined) {
+        res.status(404).send("Cet utilisateur n'existe pas");
+      } else {
+        console.log(results.body);
+        res.sendStatus(200);
+      }
+    });
+  }
+});
 
 module.exports= app
