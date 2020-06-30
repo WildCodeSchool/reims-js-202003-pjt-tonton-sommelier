@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const connection = require('./db.js');
+const cors = require('cors');
 
 /*----import routes------*/
 
@@ -11,7 +12,7 @@ const bottles = require('../routes/bottles')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors())
 
 
 app.listen(process.env.PORT, (err) => {
@@ -150,5 +151,24 @@ app.delete('/contents/:id', (req, res) => {
     }
   });
 });
+
+/* ------------------------ UserRegister ------------------------*/
+
+app.post('/users/register', (req, res) => {
+  const formData = req.body;
+  if ((formData.username == null || formData.username === '') || (formData.password == null || formData.password === '')) {
+    res.status(422).json("Vous vous êtes mal enregistré");
+  } else {
+    connection.query('INSERT INTO user SET ?', formData, (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Erreur lors de l'enregistrement");
+      } else {
+        res.status(201).send({...formData, password: null, id:results.insertId });
+      }
+    });
+  }
+});
+
 
 module.exports= app

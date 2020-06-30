@@ -114,3 +114,12 @@ Content-Type: application/json
 
 ### DELETE content by id
 DELETE http://localhost:8000/contents/5
+
+###POST test route users
+POST http://localhost:8000/users/register
+Content-Type: application/json
+
+{
+    "username": "TestUsername",
+    "password": "TestPassword"
+}
