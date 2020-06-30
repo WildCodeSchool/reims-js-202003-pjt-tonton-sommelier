@@ -156,7 +156,7 @@ app.delete('/contents/:id', (req, res) => {
 
 app.post('/users/register', (req, res) => {
   const formData = req.body;
-  if (formData.username == null || formData.username === '') {
+  if ((formData.username == null || formData.username === '') || (formData.password == null || formData.password === '')) {
     res.status(422).json("Vous vous êtes mal enregistré");
   } else {
     connection.query('INSERT INTO user SET ?', formData, (err, results) => {
@@ -164,7 +164,7 @@ app.post('/users/register', (req, res) => {
         console.log(err);
         res.status(500).send("Erreur lors de l'enregistrement");
       } else {
-        res.status(201).send({...formData, id:results.insertId });
+        res.status(201).send({...formData, password: null, id:results.insertId });
       }
     });
   }
