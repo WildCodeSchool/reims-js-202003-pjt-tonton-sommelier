@@ -176,15 +176,15 @@ app.post('/users/login', (req, res) => {
   if ((username == null || username === '') || (password == null || password === '')) {
     res.status(422).json("E-Mail ou Mot de passe incorrect");
   } else {
-    connection.query(`SELECT * FROM user WHERE username = '${username}' AND password = '${password}' `, (err, results) => {
+    connection.query('SELECT * FROM user WHERE username = ? AND password = ? ', [username, password],(err, results) => {
       if (err) {
         console.log(err);
         res.status(500).send("Erreur lors de l'authentification");
-      } else if (results.body === undefined) {
+      } else if (results[0] == null) {
         res.status(404).send("Cet utilisateur n'existe pas");
       } else {
-        console.log(results.body);
-        res.sendStatus(200);
+        const token = '';
+        res.json({token});
       }
     });
   }
