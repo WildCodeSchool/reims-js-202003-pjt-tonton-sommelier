@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const connection = require('./db.js');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 
 /*----import routes------*/
 
@@ -156,19 +157,42 @@ app.delete('/contents/:id', (req, res) => {
 
 app.post('/users/register', (req, res) => {
   const formData = req.body;
+  
   if ((formData.username == null || formData.username === '') || (formData.password == null || formData.password === '')) {
     res.status(422).json("Vous vous êtes mal enregistré");
   } else {
-    connection.query('INSERT INTO user SET ?', formData, (err, results) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Erreur lors de l'enregistrement");
-      } else {
-        res.status(201).send({...formData, password: null, id:results.insertId });
-      }
+    bcrypt.hash(formData.password, 10, function(err, hash) {
+      formData.password = hash
+      connection.query('INSERT INTO user SET ?', formData, (err, results) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Erreur lors de l'enregistrement");
+        } else {
+          res.status(201).send({...formData, password: null, id:results.insertId });
+        }
+      });    
     });
   }
 });
 
+app.post('/users/login', (req, res) => {
+  const {username, password} = req.body;
+  console.log(req.body);
+  if ((username == null || username === '') || (password == null || password === '')) {
+    res.status(422).json("E-Mail ou Mot de passe incorrect");
+  } else {
+    connection.query('SELECT * FROM user WHERE username = ? AND password = ? ', [username, password],(err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Erreur lors de l'authentification");
+      } else if (results[0] == null) {
+        res.status(404).send("Cet utilisateur n'existe pas");
+      } else {
+        const token = '';
+        res.json({token});
+      }
+    });
+  }
+});
 
 module.exports= app
