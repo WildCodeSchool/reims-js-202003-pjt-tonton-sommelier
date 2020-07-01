@@ -177,19 +177,27 @@ app.post('/users/register', (req, res) => {
 
 app.post('/users/login', (req, res) => {
   const {username, password} = req.body;
-  console.log(req.body);
   if ((username == null || username === '') || (password == null || password === '')) {
     res.status(422).json("E-Mail ou Mot de passe incorrect");
   } else {
-    connection.query('SELECT * FROM user WHERE username = ? AND password = ? ', [username, password],(err, results) => {
+    connection.query('SELECT password FROM user WHERE username = ? ', username ,(err, results) => {
       if (err) {
         console.log(err);
         res.status(500).send("Erreur lors de l'authentification");
       } else if (results[0] == null) {
-        res.status(404).send("Cet utilisateur n'existe pas");
+        res.status(400).send("Cet utilisateur n'existe pas");
       } else {
-        const token = '';
-        res.json({token});
+        const hash = results[0].password;
+        bcrypt.compare(password, hash, function(err, same) {
+          if(same) {
+            const token = ''
+            res.status(200).json({
+              token,
+            });
+          } else {
+            res.status(400).send("connexion refusée");
+          } 
+        });
       }
     });
   }
