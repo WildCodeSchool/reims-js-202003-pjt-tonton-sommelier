@@ -4,6 +4,8 @@ const app = express();
 const connection = require('./db.js');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const { createToken } = require('../services/jwt');
+
 
 /*----import routes------*/
 
@@ -190,8 +192,9 @@ app.post('/users/login', (req, res) => {
         const hash = results[0].password;
         bcrypt.compare(password, hash, function(err, same) {
           if(same) {
-            const token = ''
-            res.status(200).json({
+            const token = createToken(username)
+            res.json({
+              username,
               token,
             });
           } else {
