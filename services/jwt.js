@@ -17,7 +17,7 @@ const createToken = user => (
 
 const authenticateWithJwt = expressJwt({ 
     secret: JWT_KEY, 
-    algorithms: ['RS256'] 
+    algorithms: ['HS256'] 
 });
  
 module.exports = { createToken, authenticateWithJwt };

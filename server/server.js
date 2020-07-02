@@ -5,6 +5,7 @@ const connection = require('./db.js');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const { createToken } = require('../services/jwt');
+const { authenticateWithJwt } = require('../services/jwt');
 
 
 /*----import routes------*/
@@ -25,7 +26,7 @@ app.listen(process.env.PORT, (err) => {
   console.log(`Server is listening on ${process.env.PORT}`);
 });
  
-app.get('/',(req, res) =>{
+app.get('/', authenticateWithJwt, (req, res) =>{
   res.status(200).json('hello tonton sommelier');
 });
 
