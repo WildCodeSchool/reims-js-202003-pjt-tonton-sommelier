@@ -7,7 +7,7 @@ const JWT_KEY = process.env.JWT_KEY
 
 const createToken = user => (
    jwt.sign(
-       { username: user.username },
+       { id: user.id },
        JWT_KEY,
        {
            expiresIn: 60 * 60 * 24,// or '24h' or '1 day'
