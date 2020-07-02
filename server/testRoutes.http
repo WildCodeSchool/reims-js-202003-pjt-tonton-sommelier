@@ -2,6 +2,10 @@
 
 ### first test server
 GET http://localhost:8000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTM2NzUxNTksImV4cCI6MTU5Mzc2MTU1OX0.jlLr8bt5-6enJq69shfQZzEMDO5sO4YEjwe8wLjhB6I
+
+
+
 
 ### recuperation des coffrets
 GET http://localhost:8000/boxes
