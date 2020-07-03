@@ -133,7 +133,18 @@ POST http://localhost:8000/users/login
 Content-Type: application/json
 
 {
-    "username": "TestUsername7",
-    "password": "TestPassword7"
+    "username": "TestUsername8",
+    "password": "TestPassword8"
 }
 
+#------------------------partie box_category ------------------------#
+
+
+### GET content by id
+GET http://localhost:8000/box_category
+Content-Type: application/json
+
+{
+    "box": "Mystère",
+    "category": "rouge"
+}

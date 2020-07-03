@@ -51,6 +51,11 @@ CREATE TABLE `bottle_box` (
     `bottle_id` INT(11)
 );
 
+CREATE TABLE `box_category` (
+	`box_id` INT(11),
+    `category_id` INT(11)
+);
+
 /*------ insertions--------*/
 
 INSERT INTO bottle (`id`, `name`) VALUES (1, 'vin rouge1'),(2, 'vin rouge2'),(3, 'vin rouge3');
@@ -64,6 +69,8 @@ INSERT INTO content (`id`, `content`, `type`) VALUES (1, 'lorem ipsum inglorious
 INSERT INTO category_content (`category_id`, `content_id`) VALUES (1,1),(1,2),(1,3);
 
 INSERT INTO bottle_box (`box_id`, `bottle_id`) VALUES (1,1),(1,2),(1,3);
+
+INSERT INTO box_category (`box_id`, `category_id`) VALUES (1,1),(1,2);
 
 
 /* ------ contraintes ----*/ 
@@ -92,3 +99,13 @@ ALTER TABLE bottle_box
 ADD CONSTRAINT `fk_bottle_box_box`
 FOREIGN KEY (`box_id`)
 REFERENCES `box`(`id`);
+
+ALTER TABLE box_category
+ADD CONSTRAINT `fk_box_category_box`
+FOREIGN KEY (`box_id`)
+REFERENCES `box`(`id`);
+
+ALTER TABLE box_category
+ADD CONSTRAINT `fk_box_category_category`
+FOREIGN KEY (`category_id`)
+REFERENCES `category`(`id`);
