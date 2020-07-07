@@ -156,7 +156,20 @@ app.delete('/contents/:id', (req, res) => {
   });
 });
 
-/* ------------------------ UserRegister ------------------------*/
+/* ------------------------ box_category------------------------*/
+
+app.get('/box_category',(req, res) =>{
+  const sqlComande = "select box.name as box, category.name as category from box_category join box on box.id =box_category.box_id join category on category.id = box_category.category_id where box.name = ? AND category.name = ?;"
+  connection.query(sqlComande, [req.body.box, req.body.category], (err, results) => {
+    if (err) {
+      res.status(500).json('Erreur lors de la récupération des informations');
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+/* ------------------------ UserRegister / login------------------------*/
 
 app.post('/users/register', (req, res) => {
   const formData = req.body;
