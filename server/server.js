@@ -169,6 +169,23 @@ app.get('/box_category',(req, res) =>{
   });
 });
 
+
+/* ------------------------ category_content------------------------*/
+
+app.get('/category/:name/category_content/:type',(req, res) =>{
+  const sqlComande = "select category.name as category, content, type, réponse from category_content join category on category.id=category_content.category_id join content on content.id=category_content.content_id where type=? and category.name=?;"
+  const typeOfContent = req.params.type
+  const nameOfCategory = req.params.name
+
+  connection.query(sqlComande, [typeOfContent,nameOfCategory],(err, results) => {
+    if (err) {
+      res.status(500).json('Erreur lors de la récupération des informations');
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
 /* ------------------------ UserRegister / login------------------------*/
 
 app.post('/users/register', (req, res) => {
