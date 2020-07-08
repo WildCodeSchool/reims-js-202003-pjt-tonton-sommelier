@@ -173,7 +173,7 @@ app.get('/box_category',(req, res) =>{
 /* ------------------------ category_content------------------------*/
 
 app.get('/categories/:categoryId/contents',(req, res) =>{
-  const sqlComande = "select category_id, category.name as category, content, type, réponse from category_content join category on category.id=category_content.category_id join content on content.id=category_content.content_id where type=? and  category_id=?;"
+  const sqlComande = "select category_id, category.name as category, choix, content, type, réponse from category_content join category on category.id=category_content.category_id join content on content.id=category_content.content_id where type=? and  category_id=?;"
   const typeOfContent = req.query.type
   const CategoryId = req.params.categoryId
 
