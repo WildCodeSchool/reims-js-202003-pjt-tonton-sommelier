@@ -73,9 +73,10 @@ INSERT INTO content (`id`, `content`, `choix`, `réponse`,`type`) VALUES
 (4, 'oeillor222em ip222sum in222glorious mino222us sa222ntanas', 1, false,'oeil'),
 (5, 'oeillor222em ip222sum in222glorious mino222us sa222ntanas', 2, true, 'oeil'),
 (6, 'oeillor222em ip222sum in222glorious mino222us sa222ntanas', 3, false, 'oeil'),
-(7, 'bouchequestion 1 : lor333em ips3333um inglo33333rious m3333inous sant33333anas', 1, false,'bouche'),
-(8, 'bouchequestion 2 : lor333em ips3333um inglo33333rious m3333inous sant33333anas', 2, false,'bouche'),
-(9, 'bouchequestion 3 :lor333em ips3333um inglo33333rious m3333inous sant33333anas', 3, true,'bouche'),
+(7, 'boucheréponse 1 : lor333em ips3333um inglo33333rious m3333inous sant33333anas', 1, false,'bouche'),
+(8, 'boucheréponse 2 : lor333em ips3333um inglo33333rious m3333inous sant33333anas', 2, false,'bouche'),
+(9, 'boucheréponse 3 :lor333em ips3333um inglo33333rious m3333inous sant33333anas', 3, true,'bouche'),
+
 (10, 'ceci nest pas bon', 1, true,'bouche');
 
 INSERT INTO category_content (`category_id`, `content_id`) VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(2,10);

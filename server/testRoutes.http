@@ -152,5 +152,4 @@ Content-Type: application/json
 #/* ------------------------ category_content------------------------*/#
 
 ### GET content by category
-GET http://localhost:8000/category/rouge/category_content/nez
-
+GET http://localhost:8000/categories/1/contents?type=nez
