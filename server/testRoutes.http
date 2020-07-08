@@ -140,7 +140,7 @@ Content-Type: application/json
 #------------------------partie box_category ------------------------#
 
 
-### GET content by id
+### GET box_category
 GET http://localhost:8000/box_category
 Content-Type: application/json
 
@@ -148,3 +148,8 @@ Content-Type: application/json
     "box": "Mystère",
     "category": "rouge"
 }
+
+#/* ------------------------ category_content------------------------*/#
+
+### GET content by category
+GET http://localhost:8000/categories/1/contents?type=nez
