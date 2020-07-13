@@ -13,6 +13,7 @@ const { authenticateWithJwt } = require('../services/jwt');
 const boxes = require('../routes/boxes.js');
 const bottles = require('../routes/bottles')
 const categories = require('../routes/categories')
+const contents = require('../routes/contents')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -34,73 +35,7 @@ app.get('/', authenticateWithJwt, (req, res) =>{
 app.use('/boxes',authenticateWithJwt, boxes);
 app.use('/bottles',authenticateWithJwt, bottles);
 app.use('/categories',authenticateWithJwt, categories);
-
-/* ------------------------partie contents ------------------------*/
-
-app.get('/contents',(req, res) =>{
-  connection.query('SELECT * from content', (err, results) => {
-    if (err) {
-      res.status(500).json('Erreur lors de la récupération des contents');
-    } else {
-      res.status(200).json(results);
-    }
-  });
-});
-
-app.get('/contents/:id',(req, res) =>{
-  const idcontent = req.params.id
-  connection.query('SELECT * FROM content WHERE id = ?', idcontent, (err, results) => {
-    if (err) {
-      res.status(500).json('Erreur lors de la récupération des contents');
-    } else {
-      res.status(200).json(results);
-    }
-  });
-});
-
-app.post('/contents', (req, res) => {
-  const formData = req.body;
-  if (formData.content == null || formData.content === '') {
-    res.status(422).json("La content est mal renseignée");
-  } else {
-    connection.query('INSERT INTO content SET ?', formData, (err, results) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Erreur lors de la sauvegarde de la content");
-      } else {
-        res.status(201).send({...formData, id:results.insertId });
-      }
-    });
-  }
-});
-
-app.put('/contents/:id', (req, res) => {
-  const idcontent = req.params.id;
-  const formData = req.body;
-  if (formData.content == null || formData.content === '') {
-    res.status(422).json("La content est mal renseignée");
-  } else {
-    connection.query('UPDATE content SET ? WHERE id = ?', [formData, idcontent], err => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Erreur lors de la modification de la content");
-      } else {
-        res.status(200).send({...formData})
-      } 
-    });
-  }
-});
-
-app.delete('/contents/:id', (req, res) => {
-  const idContent = req.params.id;
-  connection.query('DELETE FROM content WHERE id = ?', idContent, err => {
-    if (err) {
-      res.status(500).send(`Erreur lors de la suppression du contenu`);
-    } else {
-      res.status(204);
-    }
-  });
-});
+app.use('/contents' ,authenticateWithJwt, contents);
 
 /* ------------------------ box_category------------------------*/
 
