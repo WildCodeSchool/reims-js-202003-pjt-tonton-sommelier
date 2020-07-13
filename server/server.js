@@ -31,8 +31,8 @@ app.get('/', authenticateWithJwt, (req, res) =>{
 });
 
 
-app.use('/boxes', boxes);
-app.use('/bottles', bottles);
+app.use('/boxes',authenticateWithJwt, boxes);
+app.use('/bottles',authenticateWithJwt, bottles);
 
 /* ------------------------partie catégories ------------------------*/
 app.get('/categories',(req, res) =>{
