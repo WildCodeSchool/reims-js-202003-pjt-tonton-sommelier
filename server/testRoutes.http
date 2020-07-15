@@ -4,14 +4,14 @@
 
 ### first test server
 GET http://localhost:8000
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTM2NzUxNTksImV4cCI6MTU5Mzc2MTU1OX0.jlLr8bt5-6enJq69shfQZzEMDO5sO4YEjwe8wLjhB6I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTQ3OTU4ODYsImV4cCI6MTU5NDg4MjI4Nn0.ROhJwj0L36Dk7N7F24laAL8sFpg63Oy7biC8mOovp0
 
 
 
 
 ### recuperation des coffrets
 GET http://localhost:8000/boxes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTQ2NDU2MDUsImV4cCI6MTU5NDczMjAwNX0.I-6SAjL-J6sRx18N_5x4eQVNEukS40qSmVrNeZBTTaA
+Authorization: Bearer eyJhbGciOiJIUzI1NicCI6IkpXVCJ9.eyJpYXQiOjE1OTQ2NDU2MDUsImV4cCI6MTU5NDczMjAwNX0.I-6SAjL-J6sRx18N_5x4eQVNEukS40qSmVrNeZBTTaA
 
 ### recuperation d'un coffret en fonction d'un id
 GET http://localhost:8000/boxes/1

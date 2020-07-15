@@ -77,7 +77,7 @@ app.post('/users/register', (req, res) => {
   } else {
     connection.query('SELECT * FROM user where username = ?', formData.username, (err, results)=> {
       if ( results[0] != null) {
-        res.status(500).send("Username deja utilisé");
+        res.status(500).json({message: "Username deja utilisé"});
       } else {
         bcrypt.hash(formData.password, 10, function(err, hash) {
           formData.password = hash
