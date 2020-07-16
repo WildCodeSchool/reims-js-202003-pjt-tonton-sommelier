@@ -53,12 +53,13 @@ app.get('/box_category',(req, res) =>{
 
 /* ------------------------ category_content------------------------*/
 
-app.get('/categories/:categoryId/contents',(req, res) =>{
-  const sqlComande = "select category_id, category.name as category, choix, content, type, réponse from category_content join category on category.id=category_content.category_id join content on content.id=category_content.content_id where type=? and  category_id=?;"
+app.get('/categories/:categoryId/contents/difficulties/:difficultiesId',(req, res) =>{
+  const sqlComande = "select category_id, category.name as category, choix, content, type, réponse from category_content join category on category.id=category_content.category_id join content on content.id=category_content.content_id where type=? and  category_id=? and difficulté=?;"
   const typeOfContent = req.query.type
   const CategoryId = req.params.categoryId
+  const difficultiesId = req.params.difficultiesId
 
-  connection.query(sqlComande, [typeOfContent,CategoryId],(err, results) => {
+  connection.query(sqlComande, [typeOfContent,CategoryId, difficultiesId],(err, results) => {
     if (err) {
       res.status(500).json('Erreur lors de la récupération des informations');
     } else {

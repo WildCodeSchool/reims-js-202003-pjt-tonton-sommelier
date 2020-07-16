@@ -19,6 +19,7 @@ CREATE TABLE `content` (
     `choix` INT(11),
     `réponse` BOOL,
 	`type` VARCHAR(50),
+    `difficulté` INT(11),
     PRIMARY KEY (`id`)
 );
 
@@ -66,32 +67,32 @@ INSERT INTO category (`id`, `name`) VALUES (1, 'rouge'), (2, 'blanc') ;
 
 INSERT INTO box (`id`, `name`, `category_id`) VALUES (1,'Mystère', 1);
 
-INSERT INTO content (`id`, `content`, `choix`, `réponse`,`type`) VALUES 
-(1, 'Quelle est la fouchette de temperature idéale pour une cave a vin ?', 4, false,'barique'),
-(2, 'Entre 10° et 14°', 1, false,'barique'),
-(3, 'Entre 11° et 15°', 2, false,'barique'),
-(4, 'Entre 12° et 16°', 3, true,'barique'),
-(5, 'La température de vieillissement optimale est de 12°C et doit être homogène dans toute la cave afin de faire vieillir votre vin jusqu\'à son apogée.', 5, false,'barique'),
-(6, 'Où trouve-t-on souvent les vins au meilleur prix ? ', 4, false,'france'),
-(7, 'En grande surface', 1, false,'france'),
-(8, 'Chez les cavistes', 2, false, 'france'),
-(9, 'Chez les producteurs', 3, true, 'france'),
-(10, 'Il vaut mieu privilégié le circuit court', 5, false,'france'),
-(11, 'Au cours de quels mois ont généralement lieu les vendanges ?', 4, false,'book'),
-(12, 'Août-septembre', 1, false,'book'),
-(13, 'Septembre-octobre', 2, true,'book'),
-(14, 'Octobre-novembre', 3, false,'book'),
-(15, 'En France, l\'époque des vendanges se situe traditionnellement entre septembre et octobre. De là vient le choix du nom de vendémiaire pour le premier mois du calendrier républicain qui dure du 22 septembre au 21 octobre. ', 5, false,'book'),
-(16, 'Quel effet le froid as-t-il sur le vin ?', 4, false,'couvert'),
-(17, 'Il inhibe les arômes', 1, true,'couvert'),
-(18, 'Il fait ressortir l’amertume', 2, false,'couvert'),
-(19, 'Il exhaler l’alcool', 3, false,'couvert'),
-(20, 'Un vin servi trop froid perdra ses arômes. Son acidité sera exacerbé au-delà du raisonnable, tout comme ses tanins. Il y a donc un risque qu\'un vin servi trop froid vous apparaisse dès lors comme austère et sans saveur.', 5, false,'couvert'),
-(21, 'Qu\'est ce que le cépage ?', 4, false,'raisin'),
-(22, 'Le domaine de production', 1, false,'raisin'),
-(23, 'L\'année de production', 2, false,'raisin'),
-(24, 'La variété du raisin utilisé', 3, true,'raisin'),
-(25, 'Un cépage est un type de plant de vigne, cultivé, et caractérisé par des particularités biologiques.', 5, false,'raisin');
+INSERT INTO content (`id`, `content`, `choix`, `réponse`,`type`, `difficulté`) VALUES 
+(1, 'Quelle est la fouchette de temperature idéale pour une cave a vin ?', 4, false,'barique',1),
+(2, 'Entre 10° et 14°', 1, false,'barique',1),
+(3, 'Entre 11° et 15°', 2, false,'barique',1),
+(4, 'Entre 12° et 16°', 3, true,'barique',1),
+(5, 'La température de vieillissement optimale est de 12°C et doit être homogène dans toute la cave afin de faire vieillir votre vin jusqu\'à son apogée.', 5, false,'barique',1),
+(6, 'Où trouve-t-on souvent les vins au meilleur prix ? ', 4, false,'france',1),
+(7, 'En grande surface', 1, false,'france',1),
+(8, 'Chez les cavistes', 2, false, 'france',1),
+(9, 'Chez les producteurs', 3, true, 'france',1),
+(10, 'Il vaut mieu privilégié le circuit court', 5, false,'france',1),
+(11, 'Au cours de quels mois ont généralement lieu les vendanges ?', 4, false,'book',1),
+(12, 'Août-septembre', 1, false,'book',1),
+(13, 'Septembre-octobre', 2, true,'book',1),
+(14, 'Octobre-novembre', 3, false,'book',1),
+(15, 'En France, l\'époque des vendanges se situe traditionnellement entre septembre et octobre. De là vient le choix du nom de vendémiaire pour le premier mois du calendrier républicain qui dure du 22 septembre au 21 octobre. ', 5, false,'book',1),
+(16, 'Quel effet le froid as-t-il sur le vin ?', 4, false,'couvert',1),
+(17, 'Il inhibe les arômes', 1, true,'couvert',1),
+(18, 'Il fait ressortir l’amertume', 2, false,'couvert',1),
+(19, 'Il exhaler l’alcool', 3, false,'couvert',1),
+(20, 'Un vin servi trop froid perdra ses arômes. Son acidité sera exacerbé au-delà du raisonnable, tout comme ses tanins. Il y a donc un risque qu\'un vin servi trop froid vous apparaisse dès lors comme austère et sans saveur.', 5, false,'couvert',1),
+(21, 'Qu\'est ce que le cépage ?', 4, false,'raisin',1),
+(22, 'Le domaine de production', 1, false,'raisin',1),
+(23, 'L\'année de production', 2, false,'raisin',1),
+(24, 'La variété du raisin utilisé', 3, true,'raisin',1),
+(25, 'Un cépage est un type de plant de vigne, cultivé, et caractérisé par des particularités biologiques.', 5, false,'raisin', 1 );
 
 
 INSERT INTO category_content (`category_id`, `content_id`) VALUES  
