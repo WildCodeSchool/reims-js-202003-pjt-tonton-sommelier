@@ -92,7 +92,33 @@ INSERT INTO content (`id`, `content`, `choix`, `réponse`,`type`, `difficulté`)
 (22, 'Le domaine de production', 1, false,'raisin',1),
 (23, 'L\'année de production', 2, false,'raisin',1),
 (24, 'La variété du raisin utilisé', 3, true,'raisin',1),
-(25, 'Un cépage est un type de plant de vigne, cultivé, et caractérisé par des particularités biologiques.', 5, false,'raisin', 1 );
+(25, 'Un cépage est un type de plant de vigne, cultivé, et caractérisé par des particularités biologiques.', 5, false,'raisin', 1 ),
+(26, 'Qu\'est ce que le Rully ?', 4, false,'barique',2),
+(27, 'Un cru bourguignon ', 1, false,'barique',2),
+(28, 'Un domaine de la vallée du Rhône', 2, false,'barique',2),
+(29, 'Une appellation de Loire ', 3, true,'barique',2),
+(30, 'L\'aire d\'appellation fait partie des vignobles de la côte chalonnaise, à environ 15 kilomètres au nord-ouest de Chalon-sur-Saône et à environ 4 kilomètres au sud de Chagny.', 5, false,'barique',2),
+(31, 'Le Mercurey est : ', 4, false,'france',2),
+(32, 'Un cépage blanc ', 1, false,'france',2),
+(33, 'Le nom d’un Château ', 2, false, 'france',2),
+(34, 'Une appellation de Bourgogne ', 3, true, 'france',2),
+(35, 'Son vignoble est situé en Saône-et-Loire, à douze kilomètres au nord-ouest de Chalon-sur-Saône (ôte chalonnaise) et à sept kilomètres de Givry.', 5, false,'france',2),
+(36, 'Quel est le principal cépage des vins du Beaujolais ?', 4, false,'book',2),
+(37, 'Gamay', 1, true,'book',2),
+(38, 'Sauvignon ', 2, false,'book',2),
+(39, 'Pinot noir ', 3, false,'book',2),
+(40, 'Le cépage gamay noir à jus blanc pour les vins rouges et le cépage chardonnay pour les vins blancs', 5, false,'book',2),
+(41, 'Comment s’appelle le cocktail à base de Gin, citrons, sucre de canne et eau gazeuse ?', 4, false,'couvert',2),
+(42, 'Gin-Fizz ', 1, true,'couvert',2),
+(43, 'Mojito', 2, false,'couvert',2),
+(44, 'Interstellar', 3, false,'couvert',2),
+(45, 'Contrairement au Tom Collins, le Gin Fizz se sert sans glace.', 5, false,'couvert',2),
+(46, 'Le Saint-Joseph est :', 4, false,'raisin',2),
+(47, 'Une appellation de Bourgogne', 1, false,'raisin',2),
+(48, 'Une appellation du Rhône', 2, true,'raisin',2),
+(49, 'Une appellation de Bordeaux', 3, false,'raisin',2),
+(50, 'Il s\'agit d\'une appellation du vignoble de la vallée du Rhône septentrionale, entre les aires de production du condrieu au nord et du Saint-Péray au sud.', 5, false,'raisin', 2 );
+
 
 
 INSERT INTO category_content (`category_id`, `content_id`) VALUES  
@@ -120,7 +146,33 @@ INSERT INTO category_content (`category_id`, `content_id`) VALUES
 (1,22),
 (1,23),
 (1,24),
-(1,25);
+(1,25),
+(1,26),
+(1,27),
+(1,28),
+(1,29),
+(1,30),
+(1,31),
+(1,32),
+(1,33),
+(1,34),
+(1,35),
+(1,36),
+(1,37),
+(1,38),
+(1,39),
+(1,40),
+(1,41),
+(1,42),
+(1,43),
+(1,44),
+(1,45),
+(1,46),
+(1,47),
+(1,48),
+(1,49),
+(1,50);
+
 
 INSERT INTO bottle_box (`box_id`, `bottle_id`) VALUES (1,1),(1,2),(1,3);
 

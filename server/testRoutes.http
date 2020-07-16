@@ -155,5 +155,5 @@ Content-Type: application/json
 #/* ------------------------ category_content------------------------*/#
 
 ### GET content by category
-GET http://localhost:8000/categories/1/contents/difficulties/1?type=barique
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTQ4ODU5ODEsImV4cCI6MTU5NDk3MjM4MX0.G3L5psISgmtVHRvfN0eoJUZ31lsIlRKExUwwnms68Wg
+GET http://localhost:8000/categories/1/contents/difficulties/2?type=barique
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTQ4OTAwMjcsImV4cCI6MTU5NDk3NjQyN30.kS162VskvV4_ooDCO5Da0WtJL3pLcGLU54N3ghtuZRg
