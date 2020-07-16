@@ -155,4 +155,5 @@ Content-Type: application/json
 #/* ------------------------ category_content------------------------*/#
 
 ### GET content by category
-GET http://localhost:8000/categories/1/contents?type=barique
+GET http://localhost:8000/categories/1/contents/difficulties/2?type=barique
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTQ4OTAwMjcsImV4cCI6MTU5NDk3NjQyN30.kS162VskvV4_ooDCO5Da0WtJL3pLcGLU54N3ghtuZRg
