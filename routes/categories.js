@@ -3,7 +3,7 @@ const connection = require('../server/db.js');
 
 const router = express.Router();
 
-router.get('/categories',(req, res) =>{
+router.get('/',(req, res) =>{
     connection.query('SELECT * from category', (err, results) => {
     if (err) {
         res.status(500).send('Erreur lors de la récupération des caégories');
@@ -13,7 +13,7 @@ router.get('/categories',(req, res) =>{
     });
 });
 
-router.post('/categories', (req, res) => {
+router.post('/', (req, res) => {
     const formData = req.body;
     if (formData.name == null || formData.name === '') {
     res.status(400).send("Le nom de la bouteille est mal renseigné");
@@ -29,7 +29,7 @@ router.post('/categories', (req, res) => {
     }
 });
 
-router.put('/categories/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     const idCategory = req.params.id;
     const formData = req.body;
     if (formData.name == null || formData.name === '') {
@@ -46,7 +46,7 @@ router.put('/categories/:id', (req, res) => {
     }
 });
 
-router.delete('/categories/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const idCategory = req.params.id;
     connection.query('DELETE FROM category WHERE id = ?', idCategory, err => {
     if (err) {

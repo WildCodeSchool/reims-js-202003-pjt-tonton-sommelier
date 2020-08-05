@@ -10,10 +10,10 @@ const { authenticateWithJwt } = require('../services/jwt');
 
 /*----import routes------*/
 
-const boxes = require('../routes/boxes.js');
-const bottles = require('../routes/bottles')
-const categories = require('../routes/categories')
-const contents = require('../routes/contents')
+const boxes = require('../routes/index.js');
+const bottles = require('../routes/bottles');
+const categories = require('../routes/categories');
+const contents = require('../routes/contents');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

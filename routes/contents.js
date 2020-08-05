@@ -4,7 +4,7 @@ const connection = require('../server/db.js');
 const router = express.Router();
 
 
-router.get('/contents', (req, res) => {
+router.get('/', (req, res) => {
     connection.query('SELECT * from content', (err, results) => {
         if (err) {
             res.status(500).json('Erreur lors de la récupération des contents');
@@ -14,7 +14,7 @@ router.get('/contents', (req, res) => {
     });
 });
 
-router.get('/contents/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const idcontent = req.params.id
     connection.query('SELECT * FROM content WHERE id = ?', idcontent, (err, results) => {
         if (err) {
@@ -25,7 +25,7 @@ router.get('/contents/:id', (req, res) => {
     });
 });
 
-router.post('/contents', (req, res) => {
+router.post('/', (req, res) => {
     const formData = req.body;
     if (formData.content == null || formData.content === '') {
         res.status(422).json("La content est mal renseignée");
@@ -41,7 +41,7 @@ router.post('/contents', (req, res) => {
     }
 });
 
-router.put('/contents/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     const idcontent = req.params.id;
     const formData = req.body;
     if (formData.content == null || formData.content === '') {
@@ -58,7 +58,7 @@ router.put('/contents/:id', (req, res) => {
     }
 });
 
-router.delete('/contents/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const idContent = req.params.id;
     connection.query('DELETE FROM content WHERE id = ?', idContent, err => {
         if (err) {
